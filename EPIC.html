@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fading Page</title>
+    <style>
+        body {
+            background-image: url(devil-anime-girl-4480x2520-19267.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            backdrop-filter: blur(60px);
+           
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 20%;
+            opacity: 0;
+            transition: opacity 2s;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            margin: 0;
+            height: 100vh;
+            overflow-y: hidden;
+        }
+        .zabi{
+ margin-top: 50px;
+            background-image: url(epic.jpg);
+    background-size: cover;
+    background-position: center;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    
+    font-size: 150px; /* Ajuste selon besoin */
+    font-weight: bolder;
+    display: inline-block;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.body.style.opacity = "1"; // Fade in
+            setTimeout(function () {
+                document.body.style.opacity = "0"; // Fade out
+                setTimeout(function () {
+                    window.location.href = "pic.html";
+                }, 2000);
+            }, 3000);
+        });
+    </script>
+</head>
+<body>
+    <h1 class="zabi">EPIC PASS</h1>
+    <p>EVRY THING IN THE EPIC PASS IS 50% OFF</p>
+</body>
+</html>
