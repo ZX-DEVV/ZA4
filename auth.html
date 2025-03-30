@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url(wallpaer.jpg);
+        }
+        .container {
+            background-color: transparent;
+            backdrop-filter: blur(23px);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 370px;
+        }
+        input {
+            padding: 10px;
+            width: 90%;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+        width: 180px;
+       height: 40px;
+       background-color: rgb(120, 0, 189);
+       border-top-left-radius: 20px;
+       color: rgb(255, 251, 251);
+       font-weight: bolder;
+       border: none;
+       border-right: 7px solid rgb(231, 222, 255);
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .codes {
+            margin-top: 20px;
+        }
+        .code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #e2e2e2;
+            padding: 5px;
+            margin: 5px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<a href="pic.html"><button><-- BACK</button></a>
+<div class="container">
+    <h2>Enter Purchase Code</h2>
+    <input type="text" id="prechasCode" placeholder="Enter prechas code">
+    <button onclick="checkCode()">Submit</button>
+    <div class="error" id="errorMessage"></div>
+    <div class="codes" id="generatedCodes"></div>
+</div>
+
+<script>
+    const correctCodes = ['54239854796', '15346289972']; // Acceptable prechas codes
+    const codeLength = 10; // Epic code length
+
+    function generateEpicCode() {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        let code = '';
+
+        // Ensure the first character is a number divisible by 2 (even)
+        const firstChar = (Math.floor(Math.random() * 5) * 2); // Random even number
+        code += firstChar;
+
+        // Generate 8 random alphanumeric characters for the middle part
+        for (let i = 0; i < 8; i++) {
+            const randomIndex = Math.floor(Math.random() * chars.length);
+            code += chars[randomIndex];
+        }
+
+        // Ensure the last character is a number divisible by 5
+        const lastChar = (Math.floor(Math.random() * 2) * 5); // Random multiple of 5 (0 or 5)
+        code += lastChar;
+
+        return code;
+    }
+
+    function checkCode() {
+        const enteredCode = document.getElementById('prechasCode').value;
+        const errorMessage = document.getElementById('errorMessage');
+        const generatedCodes = document.getElementById('generatedCodes');
+
+        // Clear previous errors and codes
+        errorMessage.textContent = '';
+        generatedCodes.innerHTML = '';
+
+        if (correctCodes.includes(enteredCode)) {
+            // Generate and display the epic codes
+            let codesHtml = '<h3>Your Epic Code:</h3>';
+            codesHtml += `<div class="code">${generateEpicCode()}</div>`;
+            
+            // Generate 3 additional codes
+            for (let i = 0; i < 1; i++) {
+                codesHtml += `<div class="code">${generateEpicCode()}</div>`;
+            }
+            generatedCodes.innerHTML = codesHtml;
+        } else {
+            errorMessage.textContent = 'Incorrect Prechas Code. Please try again.';
+        }
+    }
+</script>
+
+</body>
+</html>
